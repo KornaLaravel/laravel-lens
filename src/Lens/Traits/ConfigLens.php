@@ -6,7 +6,7 @@ use HiFolks\LaraLens\ResultLens;
 
 trait ConfigLens
 {
-    public function getConfigsDatabaseFromEnv(ResultLens $results = null): \HiFolks\LaraLens\ResultLens
+    public function getConfigsDatabaseFromEnv(ResultLens|null $results = null): \HiFolks\LaraLens\ResultLens
     {
         if (is_null($results)) {
             $results = new ResultLens();
@@ -27,7 +27,7 @@ trait ConfigLens
         return $results;
     }
 
-    public function checkDebugEnv(ResultLens $results = null): \HiFolks\LaraLens\ResultLens
+    public function checkDebugEnv(ResultLens|null $results = null): \HiFolks\LaraLens\ResultLens
     {
         if (is_null($results)) {
             $results  = new ResultLens();
@@ -52,7 +52,7 @@ trait ConfigLens
         return $results;
     }
 
-    public function getConfigsDatabase(ResultLens $results = null): \HiFolks\LaraLens\ResultLens
+    public function getConfigsDatabase(ResultLens|null $results = null): \HiFolks\LaraLens\ResultLens
     {
         if (is_null($results)) {
             $results = new ResultLens();
