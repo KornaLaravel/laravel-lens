@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.1 - WIP
+- Upgrade to PHP 8.4
+
 ## 1.0.0 - 2024-03-13
 - upgrading packages
 

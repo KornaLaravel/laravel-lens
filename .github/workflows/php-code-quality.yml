@@ -14,13 +14,13 @@ jobs:
     strategy:
         matrix:
             operating-system: [ubuntu-latest]
-            php-versions: [ '8.3', '8.2', '8.1' ]
+            php-versions: [ '8.4', '8.3', '8.2', '8.1' ]
             dependency-stability: [ 'prefer-stable','prefer-lowest' ]
 
     runs-on: ${{ matrix.operating-system }}
 
 
-    name: P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
+    name: Test P${{ matrix.php-versions }} - L${{ matrix.laravel }} - ${{ matrix.dependency-stability }} - ${{ matrix.operating-system}}
 
     steps:
     - uses: actions/checkout@v4
@@ -43,6 +43,27 @@ jobs:
       env:
         SESSION_DRIVER: array
       run: composer test
+
+
+  laravel-check:
+    strategy:
+        matrix:
+            operating-system: [ubuntu-latest]
+            php-versions: [ '8.3' ]
+
+    runs-on: ${{ matrix.operating-system }}
+
+
+    name: Check P${{ matrix.php-versions }} - ${{ matrix.operating-system}}
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install PHP versions
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
     - name: Execute Code Sniffer via phpcs
       run: |
